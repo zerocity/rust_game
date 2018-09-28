@@ -1,0 +1,98 @@
+{
+    "columns": 16,
+    "image": "0x72_16x16DungeonTileset.v4.png",
+    "imageheight": 256,
+    "imagewidth": 256,
+    "margin": 0,
+    "name": "dungeon",
+    "spacing": 0,
+    "tilecount": 256,
+    "tiledversion": "1.2.0",
+    "tileheight": 16,
+    "tiles": [{
+            "id": 0,
+            "type": "layout"
+        },
+        {
+            "id": 1,
+            "type": "layout"
+        },
+        {
+            "id": 9,
+            "type": "weapon"
+        },
+        {
+            "id": 10,
+            "type": "weapon"
+        },
+        {
+            "id": 132,
+            "type": "player"
+        },
+        {
+            "id": 144,
+            "type": "monster"
+        },
+        {
+            "id": 145,
+            "type": "monster"
+        },
+        {
+            "id": 182,
+            "properties": [{
+                "name": "boss_lvl",
+                "type": "int",
+                "value": 99
+            }],
+            "type": "monster"
+        },
+        {
+            "id": 183,
+            "properties": [{
+                "name": "boss_lvl",
+                "type": "int",
+                "value": 99
+            }],
+            "type": "monster"
+        },
+        {
+            "id": 184,
+            "properties": [{
+                "name": "boss_lvl",
+                "type": "int",
+                "value": 99
+            }],
+            "type": "monster"
+        },
+        {
+            "id": 185,
+            "properties": [{
+                "name": "boss_lvl",
+                "type": "int",
+                "value": 99
+            }],
+            "type": "monster"
+        },
+        {
+            "id": 186,
+            "properties": [{
+                "name": "boss_lvl",
+                "type": "int",
+                "value": 99
+            }],
+            "type": "monster"
+        },
+        {
+            "id": 187,
+            "properties": [{
+                "name": "boss_lvl",
+                "type": "int",
+                "value": 99
+            }],
+            "type": "monster"
+        }
+    ],
+    "tilewidth": 16,
+    "type": "tileset",
+    "version": 1.2
+}

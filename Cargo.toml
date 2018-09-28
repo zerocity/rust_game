@@ -1,0 +1,13 @@
+[package]
+name = "game"
+version = "0.1.0"
+authors = ["Philipp Bisson <pb@25th-floor.com>"]
+
+[dependencies]
+serde = "1"
+serde_derive = "1.0.79"
+serde_json = "1.0"
+ggez = "0.4"
+sdl2 = "0.31"
+rand = "0.5.5"
+tiled = { git = "https://github.com/Delta-Psi/rs-tiled/", branch = "master" }
