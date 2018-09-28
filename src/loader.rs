@@ -13,15 +13,60 @@ pub struct ExtendedTile {
     pub y: i32,
 }
 
-pub fn get_coords_of_tile_id(w: i32, h: i32, id: i32) -> (i32, i32) {
+type ManagedTileSet = HashMap<String, Vec<ExtendedTile>>;
+
+pub struct TileManager {
+    // set of tiles
+    pub tileset_name: String,
+    pub image: String,
+    map: HashMap<String, ManagedTileSet>,
+}
+
+impl TileManager {
+    pub fn new(tileset: Tileset) -> TileManager {
+        let result = group_by_tile_type(tileset.clone());
+        let mut map: HashMap<String, ManagedTileSet> = HashMap::new();
+        map.insert(tileset.name.to_string(), result);
+        TileManager {
+            map,
+            // broken ....
+            image: tileset.image,
+            tileset_name: tileset.name,
+        }
+    }
+
+    pub fn get_tiles_by_type(&self, tile_type: &str) -> Option<&Vec<ExtendedTile>> {
+        self.map.get(&self.tileset_name).unwrap().get(tile_type)
+    }
+
+    pub fn get(&self) -> Option<&ManagedTileSet> {
+        self.map.get(&self.tileset_name)
+    }
+
+    pub fn get_tileset(&self, tile_type: &str) -> Option<&ManagedTileSet> {
+        self.map.get(&tile_type.to_string())
+    }
+
+    pub fn set_tileset(&mut self, tile_type: &str) {
+        // TODO check for key !!
+        self.tileset_name = tile_type.to_string();
+    }
+
+    pub fn add_tileset(&mut self, tileset: Tileset) {
+        let result = group_by_tile_type(tileset.clone());
+        self.map.insert(tileset.name, result);
+    }
+}
+
+fn get_coords_of_tile_id(w: i32, h: i32, id: i32) -> (i32, i32) {
     let row = (id / w) as i32;
     let col = id % w;
-    let y = row * w;
-    let x = col * h;
+    let x = row * w;
+    let y = col * h;
     (x, y)
 }
 
-pub fn get_rect_src(x: i32, y: i32, image_height: i32, image_width: i32) -> Rect {
+fn get_rect_src(x: i32, y: i32, image_height: i32, image_width: i32) -> Rect {
     Rect::new(
         y as f32 / 256 as f32,
         x as f32 / 256 as f32,
@@ -30,7 +75,7 @@ pub fn get_rect_src(x: i32, y: i32, image_height: i32, image_width: i32) -> Rect
     )
 }
 
-pub fn group_by_tile_type(tileset: Tileset) -> HashMap<String, Vec<ExtendedTile>> {
+fn group_by_tile_type(tileset: Tileset) -> HashMap<String, Vec<ExtendedTile>> {
     let mut grouped: HashMap<String, Vec<ExtendedTile>> = HashMap::new();
     let tw = tileset.tilewidth;
     let th = tileset.tileheight;
@@ -51,8 +96,9 @@ pub fn group_by_tile_type(tileset: Tileset) -> HashMap<String, Vec<ExtendedTile>
                         x,
                         y,
                     };
-                    let mut a: Vec<ExtendedTile> = vec![e_tile];
-                    entry.insert(a);
+                    let mut v: Vec<ExtendedTile> = Vec::new();
+                    v.push(e_tile);
+                    entry.insert(v);
                 }
                 Occupied(entry) => {
                     let (x, y) = get_coords_of_tile_id(tw, th, tile.id);
@@ -68,15 +114,36 @@ pub fn group_by_tile_type(tileset: Tileset) -> HashMap<String, Vec<ExtendedTile>
             }
         }
     }
+    // .clone()
     grouped
 }
+
+// fn get_level() -> Tilemap {
+//     let path = "resources/lvl1.json";
+//     parse_tilemap(path).unwrap_or_else(|_| {
+//         panic!("Didn't find file");
+//     })
+// }
+
+// fn get_tilesets(sets: &Vec<SmallTileset>) -> Vec<Tileset> {
+//     sets.into_iter()
+//         .map(|set: &SmallTileset| {
+//             let path = format!("resources/{}", set.source);
+//             let tile = parse_tileset(path).unwrap();
+//             tile
+//         }).collect()
+// }
+
+// use ggez::graphics::{DrawMode, Point2};
+// use assets::{parse_tilemap, parse_tileset, SmallTileset, Tilemap, Tileset};
+// use std::collections::HashMap;
 
 #[test]
 fn it_should_return_a_group_by_tile_type() {
     let path = "resources/dungeon.test.json".to_string();
     let result = group_by_tile_type(parse_tileset(path).unwrap());
     let p = result.get("player").unwrap();
-    println!("{:#?}", p);
+
     let w = result.get("weapon").unwrap();
     let m = result.get("monster").unwrap();
     let l = result.get("layout").unwrap();
@@ -90,4 +157,14 @@ fn it_should_return_a_group_by_tile_type() {
 fn it_should_return_coords_of_tile_id() {
     assert_eq!(get_coords_of_tile_id(16, 16, 1), (0, 0));
     assert_eq!(get_coords_of_tile_id(16, 16, 17), (0, 0));
+}
+
+#[test]
+fn it_should_create_an_tile_manager() {
+    let path = "resources/dungeon.test.json".to_string();
+    let tileset = parse_tileset(path).unwrap();
+    let t = TileManager::new(tileset);
+    let p = t.get_tiles_by_type("player").unwrap();
+    println!("{:#?}", p);
+    assert_eq!(p.len(), 1);
 }

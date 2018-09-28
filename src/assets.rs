@@ -33,7 +33,7 @@ pub struct Tile {
     pub properties: Option<Vec<HashMap<String, Value>>>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Tileset {
     pub image: String,
     pub imageheight: i32,
