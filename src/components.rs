@@ -1,7 +1,17 @@
 //use ggez::nalgebra as na;
 // use ggez::graphics::*;
-use ggez::graphics::{Point2, Rect, Vector2};
+use ggez::graphics::{Drawable, Point2, Rect, Vector2};
 use specs::*;
+
+#[derive(Clone, Debug)]
+pub struct Render {
+    pub src: Rect,
+    // dest: Point2,
+}
+
+impl Component for Render {
+    type Storage = VecStorage<Self>;
+}
 
 #[derive(Clone, Debug)]
 pub struct Position(pub Point2);

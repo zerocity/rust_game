@@ -1,10 +1,12 @@
 use ggez;
-use ggez::graphics;
+// use ggez::graphics;
+use ggez::graphics::{draw_ex, DrawParam, Point2, Vector2};
 use ggez_goodies::scene;
 use specs::{self, Join};
 use warmy;
 
 use components as c;
+// use ggez_goodies::input::InputEffect;
 use input;
 use resources;
 use scenes::*;
@@ -12,11 +14,11 @@ use systems::*;
 use world::World;
 
 use assets::{parse_tileset, Tileset};
-use loader::{Sprite, TileManager};
+use loader;
 
+use specs::Builder;
 pub struct LevelScene {
     done: bool,
-    player: Sprite,
     image: warmy::Res<resources::Image>,
     dispatcher: specs::Dispatcher<'static, 'static>,
 }
@@ -32,8 +34,18 @@ impl LevelScene {
     pub fn new(ctx: &mut ggez::Context, world: &mut World) -> Self {
         let done = false;
 
-        let tile_manager = TileManager::new(get_dungeon());
+        let tile_manager = loader::TileManager::new(get_dungeon());
         let player = tile_manager.by_id(132).unwrap().to_owned();
+
+        world
+            .specs_world
+            .create_entity()
+            .with(c::Render { src: player.src })
+            .with(c::Position(Point2::new(0.0, 0.0)))
+            .with(c::Motion {
+                velocity: Vector2::new(1.0, 1.0),
+                acceleration: Vector2::new(0.0, 0.0),
+            }).build();
 
         let image = world
             .assets
@@ -43,7 +55,6 @@ impl LevelScene {
 
         LevelScene {
             done,
-            player,
             image,
             dispatcher,
         }
@@ -68,19 +79,16 @@ impl scene::Scene<World, input::InputEvent> for LevelScene {
 
     fn draw(&mut self, gameworld: &mut World, ctx: &mut ggez::Context) -> ggez::GameResult<()> {
         let pos = gameworld.specs_world.read_storage::<c::Position>();
+        let render = gameworld.specs_world.read_storage::<c::Render>();
 
-        for p in pos.join() {
-            // graphics::draw(ctx, &(self.kiwi.borrow().0), p.0, 0.0)?;
-            // println!("{:?}", p  );
-            graphics::draw_ex(
+        for (p, r) in (&pos, &render).join() {
+            draw_ex(
                 ctx,
                 &(self.image.borrow().0),
-                graphics::DrawParam {
-                    src: self.player.src,
-                    scale: graphics::Point2::new(4.0, 4.0),
-                    // dest: graphics::Point2::new(100., 100.),
+                DrawParam {
+                    src: r.src,
+                    scale: Point2::new(4.0, 4.0),
                     dest: p.0,
-                    // dest: p.Point2,
                     ..Default::default()
                 },
             ).unwrap();

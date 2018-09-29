@@ -8,8 +8,8 @@ extern crate serde_json;
 extern crate chrono;
 
 #[macro_use]
-#[allow(unused_variables)]
 extern crate specs_derive;
+
 #[macro_use]
 extern crate failure;
 #[macro_use]
@@ -25,6 +25,7 @@ pub mod assets;
 pub mod components;
 pub mod error;
 pub mod input;
+pub mod keyboard;
 pub mod loader;
 pub mod resources;
 pub mod scenes;

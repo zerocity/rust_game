@@ -4,10 +4,12 @@ use std::path;
 
 use ggez::event::*;
 use input;
+use keyboard;
 use scenes;
 use world;
 
 struct MainState {
+    // world: world::World,
     scenes: scenes::FSceneStack,
     input_binding: input::InputBinding,
 }
@@ -52,12 +54,25 @@ impl event::EventHandler for MainState {
     ) {
         if let Some(ev) = self.input_binding.resolve(keycode) {
             self.scenes.input(ev, true);
+            // For ECS
+            let mut keyboard = self
+                .scenes
+                .world
+                .specs_world
+                .write_resource::<keyboard::Keyboard>();
+            keyboard.0.insert(keycode, true);
         }
     }
 
     fn key_up_event(&mut self, _ctx: &mut Context, keycode: Keycode, _keymod: Mod, _repeat: bool) {
         if let Some(ev) = self.input_binding.resolve(keycode) {
             self.scenes.input(ev, false);
+            let mut keyboard = self
+                .scenes
+                .world
+                .specs_world
+                .write_resource::<keyboard::Keyboard>();
+            keyboard.0.insert(keycode, false);
         }
     }
 }
