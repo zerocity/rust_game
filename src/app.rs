@@ -33,7 +33,6 @@ impl event::EventHandler for MainState {
             self.scenes.update();
         }
         self.scenes.world.assets.sync(ctx);
-        // self.pos_x = self.pos_x % 800.0 + 1.0;
         Ok(())
     }
 
@@ -42,34 +41,6 @@ impl event::EventHandler for MainState {
         self.scenes.draw(ctx);
         graphics::present(ctx);
         Ok(())
-
-        // graphics::clear(ctx);
-        // let dest_point = graphics::Point2::new(self.pos_x, 100.0);
-        // let img = &self.image;
-
-        // graphics::draw_ex(
-        //     ctx,
-        //     img,
-        //     DrawParam {
-        //         src: self.player.src,
-        //         scale: graphics::Point2::new(2.0, 2.0),
-        //         dest: dest_point,
-        //         ..Default::default()
-        //     },
-        // ).unwrap();
-
-        // graphics::draw_ex(
-        //     ctx,
-        //     img,
-        //     DrawParam {
-        //         src: self.player.src,
-        //         scale: graphics::Point2::new(2.0, 2.0),
-        //         dest: graphics::Point2::new(255.0, self.pos_x),
-        //         ..Default::default()
-        //     },
-        // ).unwrap();
-        // graphics::present(ctx);
-        // Ok(())
     }
 
     fn key_down_event(

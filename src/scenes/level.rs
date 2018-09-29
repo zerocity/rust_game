@@ -17,7 +17,7 @@ use loader::{Sprite, TileManager};
 pub struct LevelScene {
     done: bool,
     player: Sprite,
-    kiwi: warmy::Res<resources::Image>,
+    image: warmy::Res<resources::Image>,
     dispatcher: specs::Dispatcher<'static, 'static>,
 }
 
@@ -33,9 +33,9 @@ impl LevelScene {
         let done = false;
 
         let tile_manager = TileManager::new(get_dungeon());
-        let player = tile_manager.sprite.get(40).unwrap().to_owned();
+        let player = tile_manager.by_id(132).unwrap().to_owned();
 
-        let kiwi = world
+        let image = world
             .assets
             .get::<_, resources::Image>(&warmy::FSKey::new(&tile_manager.image), ctx)
             .unwrap();
@@ -44,7 +44,7 @@ impl LevelScene {
         LevelScene {
             done,
             player,
-            kiwi,
+            image,
             dispatcher,
         }
     }
@@ -74,11 +74,12 @@ impl scene::Scene<World, input::InputEvent> for LevelScene {
             // println!("{:?}", p  );
             graphics::draw_ex(
                 ctx,
-                &(self.kiwi.borrow().0),
+                &(self.image.borrow().0),
                 graphics::DrawParam {
                     src: self.player.src,
-                    scale: graphics::Point2::new(2.0, 2.0),
-                    dest: graphics::Point2::new(100., 100.),
+                    scale: graphics::Point2::new(4.0, 4.0),
+                    // dest: graphics::Point2::new(100., 100.),
+                    dest: p.0,
                     // dest: p.Point2,
                     ..Default::default()
                 },
