@@ -13,27 +13,42 @@ pub struct ExtendedTile {
     pub y: i32,
 }
 
+#[derive(Debug, Clone)]
+pub struct Sprite {
+    pub sprite_id: i32,
+    pub src: Rect,
+    // pub x: i32,
+    // pub y: i32,
+}
+
 type ManagedTileSet = HashMap<String, Vec<ExtendedTile>>;
 
 pub struct TileManager {
     // set of tiles
     pub tileset_name: String,
     pub image: String,
+    pub sprite: Vec<Sprite>, // should be an hashmap key : id v: sprite
     map: HashMap<String, ManagedTileSet>,
 }
 
 impl TileManager {
     pub fn new(tileset: Tileset) -> TileManager {
         let result = group_by_tile_type(tileset.clone());
+        let sprite = add_rect_src_on_tiles(tileset.clone());
         let mut map: HashMap<String, ManagedTileSet> = HashMap::new();
         map.insert(tileset.name.to_string(), result);
         TileManager {
             map,
+            sprite,
             // broken ....
             image: tileset.image,
             tileset_name: tileset.name,
         }
     }
+
+    // pub fn get_tile_by_id(&self, id: i32) -> Option<ExtendedTile> {
+    //     self.tiles.get(id)
+    // }
 
     pub fn get_tiles_by_type(&self, tile_type: &str) -> Option<&Vec<ExtendedTile>> {
         self.map.get(&self.tileset_name).unwrap().get(tile_type)
@@ -73,6 +88,34 @@ fn get_rect_src(x: i32, y: i32, image_height: i32, image_width: i32) -> Rect {
         16.0 / image_height as f32,
         16.0 / image_width as f32,
     )
+}
+
+pub fn add_rect_src_on_tiles(tileset: Tileset) -> Vec<Sprite> {
+    let tw = tileset.tilewidth;
+    let th = tileset.tileheight;
+    let iw = tileset.imagewidth;
+    let ih = tileset.imagewidth;
+    let tiles = tileset.tiles.unwrap();
+    let mut v: Vec<Sprite> = Vec::new();
+
+    for tile in tiles.into_iter() {
+        let (x, y) = get_coords_of_tile_id(tw, th, tile.id);
+        let src = get_rect_src(x, y, ih, iw);
+
+        let e_tile = Sprite {
+            sprite_id: tile.id,
+            src,
+        };
+        v.push(e_tile);
+    }
+    v
+}
+
+#[test]
+fn it_should_add_rect_src_on_tiles() {
+    let path = "resources/dungeon.test.json".to_string();
+    let result = add_rect_src_on_tiles(parse_tileset(path).unwrap());
+    assert_eq!(1, 1);
 }
 
 fn group_by_tile_type(tileset: Tileset) -> HashMap<String, Vec<ExtendedTile>> {
