@@ -25,9 +25,8 @@ impl World {
     fn register_components(&mut self) {
         self.specs_world.register::<Position>();
         self.specs_world.register::<Motion>();
-        self.specs_world.register::<Shot>();
-        self.specs_world.register::<Player>();
         self.specs_world.register::<Render>();
+        self.specs_world.register::<Controllable>();
     }
 
     pub fn new(ctx: &mut ggez::Context, resource_dir: Option<path::PathBuf>) -> Self {

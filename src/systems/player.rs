@@ -1,13 +1,12 @@
-//! specs systems.
 use components::*;
 use ggez::event::Keycode;
 use ggez::graphics::Vector2;
 use keyboard;
-use specs::{self, Join, Read};
+use specs::{self, HashMapStorage, Join, Read};
 
-pub struct MovementSystem;
+pub struct PlayerMovementSystem;
 
-impl<'a> specs::System<'a> for MovementSystem {
+impl<'a> specs::System<'a> for PlayerMovementSystem {
     type SystemData = (
         specs::WriteStorage<'a, Position>,
         specs::ReadStorage<'a, Motion>,

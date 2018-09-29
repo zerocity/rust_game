@@ -10,7 +10,7 @@ use components as c;
 use input;
 use resources;
 use scenes::*;
-use systems::*;
+use systems;
 use world::World;
 
 use assets::{parse_tileset, Tileset};
@@ -62,7 +62,7 @@ impl LevelScene {
 
     fn register_systems() -> specs::Dispatcher<'static, 'static> {
         specs::DispatcherBuilder::new()
-            .with(MovementSystem, "sys_movement", &[])
+            .with(systems::player::PlayerMovementSystem, "sys_movement", &[])
             .build()
     }
 }

@@ -3,15 +3,12 @@ use logger;
 use std::path;
 
 use ggez::event::*;
-use input;
 use keyboard;
 use scenes;
 use world;
 
 struct MainState {
-    // world: world::World,
     scenes: scenes::FSceneStack,
-    input_binding: input::InputBinding,
 }
 
 impl MainState {
@@ -21,17 +18,13 @@ impl MainState {
         let initial_scene = Box::new(scenes::level::LevelScene::new(ctx, &mut scenestack.world));
         scenestack.push(initial_scene);
 
-        Ok(MainState {
-            scenes: scenestack,
-            input_binding: input::create_input_binding(),
-        })
+        Ok(MainState { scenes: scenestack })
     }
 }
 
 impl event::EventHandler for MainState {
     fn update(&mut self, ctx: &mut Context) -> GameResult<()> {
         const DESIRED_FPS: u32 = 60;
-        // const DESIRED_FPS: u32 = 1;
         while timer::check_update_time(ctx, DESIRED_FPS) {
             self.scenes.update();
         }
@@ -69,10 +62,6 @@ impl event::EventHandler for MainState {
             .specs_world
             .write_resource::<keyboard::Keyboard>();
         keyboard.0.insert(keycode, false);
-        // if let Some(ev) = self.input_binding.resolve(keycode) {
-        // self.scenes.input(ev, false);
-
-        // }
     }
 }
 
@@ -85,14 +74,10 @@ pub fn start() {
         res_path.push("resources");
         res_path
     });
-    // If we have such a path then add it to the context builder too
-    // (modifying the cb from inside a closure gets sticky)
     if let Some(ref s) = cargo_path {
         cb = cb.add_resource_path(s);
     }
-
     let ctx = &mut cb.build().unwrap();
-
     match MainState::new(cargo_path, ctx) {
         Err(e) => {
             println!("Could not load game!");
