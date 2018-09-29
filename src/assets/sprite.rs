@@ -18,6 +18,7 @@ pub struct Sprite {
 
 pub type ManagedSprite = HashMap<i32, Sprite>;
 
+#[derive(Debug, Clone)]
 pub struct TileManager {
     // set of tiles
     pub tileset_name: String,
@@ -84,6 +85,9 @@ pub fn create_sprite_with_index(tileset: Tileset) -> ManagedSprite {
 
 #[test]
 fn it_should_be_an_hashmap_with_sprite_key_is_sprite_id() {
+    let a: u32 = 307 << 16;
+    let b = a as i32;
+    println!("{}", b);
     use assets::tileparser::parse_tileset;
     let path = "resources/dungeon.test.json".to_string();
     let tileset = parse_tileset(path).unwrap();

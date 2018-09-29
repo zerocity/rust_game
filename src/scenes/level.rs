@@ -12,8 +12,11 @@ use setup::{input, resources};
 use systems;
 use world::World;
 
+// use entities::level::Tile;
+
 use assets::sprite::TileManager;
-use assets::tileparser::{parse_tileset, Tileset};
+use assets::tileparser::{parse_tilemap, parse_tileset, Tilemap, Tileset};
+use entities::level::{LevelMap, Tile};
 use specs::Builder;
 
 pub struct LevelScene {
@@ -29,12 +32,49 @@ fn get_dungeon() -> Tileset {
     })
 }
 
+fn get_lvl() -> Tilemap {
+    let path = "resources/lvl1.json";
+    parse_tilemap(path).unwrap_or_else(|_| {
+        panic!("Didn't find file");
+    })
+}
+
 impl LevelScene {
     pub fn new(ctx: &mut ggez::Context, world: &mut World) -> Self {
         let done = false;
+        let tilemap = get_lvl();
+        let tileset = get_dungeon();
 
-        let tile_manager = TileManager::new(get_dungeon());
+        let tile_manager = TileManager::new(tileset);
+        let level = LevelMap::new(tilemap, tile_manager.clone());
         let player = tile_manager.by_id(132).unwrap().to_owned();
+
+        // let first = tile_manager.by_id(115).unwrap().to_owned();
+
+        // let mut t = Tile::default();
+
+        // t.dest = Point2::new(100.0, 100.0);
+        // t.set_src(first.src);
+
+        // world
+        //     .specs_world
+        //     .create_entity()
+        //     .with(c::Render { src: t.src })
+        //     .with(c::Position(t.dest))
+        //     .build();
+
+        for tile in level.get_grid().iter() {
+            if let Some(id) = tile.sprite_id {
+                if id > 0 {
+                    world
+                        .specs_world
+                        .create_entity()
+                        .with(c::Render { src: tile.src })
+                        .with(c::Position(tile.dest))
+                        .build();
+                }
+            }
+        }
 
         world
             .specs_world
@@ -87,7 +127,7 @@ impl scene::Scene<World, input::InputEvent> for LevelScene {
                 &(self.image.borrow().0),
                 DrawParam {
                     src: r.src,
-                    scale: Point2::new(4.0, 4.0),
+                    // scale: Point2::new(4.0, 4.0),
                     dest: p.0,
                     ..Default::default()
                 },
