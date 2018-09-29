@@ -2,7 +2,7 @@ use components::*;
 use ggez::event::Keycode;
 use ggez::graphics::Vector2;
 use keyboard;
-use specs::{self, HashMapStorage, Join, Read};
+use specs::{self, Join, Read};
 
 pub struct PlayerMovementSystem;
 
@@ -11,10 +11,11 @@ impl<'a> specs::System<'a> for PlayerMovementSystem {
         specs::WriteStorage<'a, Position>,
         specs::ReadStorage<'a, Motion>,
         specs::ReadStorage<'a, Render>,
+        specs::ReadStorage<'a, Controllable>,
         Read<'a, keyboard::Keyboard>,
     );
 
-    fn run(&mut self, (mut pos, motion, render, kbd): Self::SystemData) {
+    fn run(&mut self, (mut pos, motion, render, ctlb, kbd): Self::SystemData) {
         // The `.join()` combines multiple components,
         // so we only access those entities which have
         // both of them.
@@ -40,7 +41,7 @@ impl<'a> specs::System<'a> for PlayerMovementSystem {
             pv.y = 1. * speed;
         }
 
-        for (pos, motion, _) in (&mut pos, &motion, &render).join() {
+        for (pos, motion, _, _) in (&mut pos, &motion, &render, &ctlb).join() {
             pos.0 += motion.velocity + pv;
         }
     }
