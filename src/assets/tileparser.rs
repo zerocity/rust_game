@@ -3,21 +3,6 @@ use std::collections::HashMap;
 use std::fs;
 use std::io::Error;
 
-//
-//
-//
-// let tileset = parse_tileset("resources/base.json").unwrap_or_else(|_| {
-//     panic!("Didnt find file");
-// });
-// let grounds: Vec<Tiles> = tileset
-//     .tiles
-//     .into_iter()
-//     .filter(|tile| tile.tile_type == "ground".to_string())
-//     .collect();
-//
-//
-//
-
 #[derive(Debug, Deserialize)]
 pub struct Image {
     pub source: String,

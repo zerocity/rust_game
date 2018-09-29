@@ -7,16 +7,15 @@ use warmy;
 
 use components as c;
 // use ggez_goodies::input::InputEffect;
-use input;
-use resources;
 use scenes::*;
+use setup::{input, resources};
 use systems;
 use world::World;
 
-use assets::{parse_tileset, Tileset};
-use loader;
-
+use assets::sprite::TileManager;
+use assets::tileparser::{parse_tileset, Tileset};
 use specs::Builder;
+
 pub struct LevelScene {
     done: bool,
     image: warmy::Res<resources::Image>,
@@ -34,7 +33,7 @@ impl LevelScene {
     pub fn new(ctx: &mut ggez::Context, world: &mut World) -> Self {
         let done = false;
 
-        let tile_manager = loader::TileManager::new(get_dungeon());
+        let tile_manager = TileManager::new(get_dungeon());
         let player = tile_manager.by_id(132).unwrap().to_owned();
 
         world
@@ -42,6 +41,7 @@ impl LevelScene {
             .create_entity()
             .with(c::Render { src: player.src })
             .with(c::Position(Point2::new(0.0, 0.0)))
+            .with(c::Controllable)
             .with(c::Motion {
                 velocity: Vector2::new(0.0, 0.0),
                 acceleration: Vector2::new(0.0, 0.0),

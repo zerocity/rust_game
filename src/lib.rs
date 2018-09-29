@@ -23,13 +23,9 @@ extern crate warmy;
 pub mod app;
 pub mod assets;
 pub mod components;
-pub mod error;
-pub mod input;
+pub mod entities;
 pub mod keyboard;
-pub mod loader;
-pub mod resources;
 pub mod scenes;
+pub mod setup;
 pub mod systems;
 pub mod world;
-
-pub mod logger;

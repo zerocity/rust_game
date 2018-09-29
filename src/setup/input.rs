@@ -1,4 +1,5 @@
-//! Typedefs for input shortcuts.
+// is unused but i dont know how to remove it from the scene manager
+
 use ggez::event::*;
 use ggez_goodies::input;
 

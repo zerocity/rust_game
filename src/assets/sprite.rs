@@ -1,5 +1,4 @@
-#[allow(unused_imports)]
-use assets::{parse_tileset, Tile, Tileset};
+use assets::tileparser::{Tile, Tileset};
 use ggez::graphics::Rect;
 use std::collections::HashMap;
 
@@ -17,7 +16,7 @@ pub struct Sprite {
     pub src: Rect,
 }
 
-type ManagedSprite = HashMap<i32, Sprite>;
+pub type ManagedSprite = HashMap<i32, Sprite>;
 
 pub struct TileManager {
     // set of tiles
@@ -85,6 +84,7 @@ pub fn create_sprite_with_index(tileset: Tileset) -> ManagedSprite {
 
 #[test]
 fn it_should_be_an_hashmap_with_sprite_key_is_sprite_id() {
+    use assets::tileparser::parse_tileset;
     let path = "resources/dungeon.test.json".to_string();
     let tileset = parse_tileset(path).unwrap();
     let sprites = TileManager::new(tileset);

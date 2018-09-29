@@ -1,5 +1,5 @@
 use ggez::*;
-use logger;
+use setup::logger;
 use std::path;
 
 use ggez::event::*;

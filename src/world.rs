@@ -13,8 +13,8 @@ use warmy;
 use std::path;
 
 use components::*;
-use input;
 use keyboard;
+use setup::input;
 pub struct World {
     pub assets: warmy::Store<ggez::Context>,
     pub input: input::InputState,

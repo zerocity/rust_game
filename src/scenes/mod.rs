@@ -1,5 +1,5 @@
 use ggez_goodies::scene;
-use input;
+use setup::input;
 use world::World;
 pub mod level;
 

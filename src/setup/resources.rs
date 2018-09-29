@@ -6,7 +6,7 @@ use failure::{self, Fail};
 use ggez::{self, audio, graphics};
 use warmy;
 
-use error::*;
+use setup::error::*;
 
 /// Warmy hands our `load()` method an absolute path, while ggez takes absolute
 /// paths into its VFS directory.  Warmy needs to know the real absolute path so
