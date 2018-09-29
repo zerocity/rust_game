@@ -43,7 +43,7 @@ impl LevelScene {
             .with(c::Render { src: player.src })
             .with(c::Position(Point2::new(0.0, 0.0)))
             .with(c::Motion {
-                velocity: Vector2::new(1.0, 1.0),
+                velocity: Vector2::new(0.0, 0.0),
                 acceleration: Vector2::new(0.0, 0.0),
             }).build();
 

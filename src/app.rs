@@ -31,6 +31,7 @@ impl MainState {
 impl event::EventHandler for MainState {
     fn update(&mut self, ctx: &mut Context) -> GameResult<()> {
         const DESIRED_FPS: u32 = 60;
+        // const DESIRED_FPS: u32 = 1;
         while timer::check_update_time(ctx, DESIRED_FPS) {
             self.scenes.update();
         }
@@ -52,28 +53,26 @@ impl event::EventHandler for MainState {
         _keymod: Mod,
         _repeat: bool,
     ) {
-        if let Some(ev) = self.input_binding.resolve(keycode) {
-            self.scenes.input(ev, true);
-            // For ECS
-            let mut keyboard = self
-                .scenes
-                .world
-                .specs_world
-                .write_resource::<keyboard::Keyboard>();
-            keyboard.0.insert(keycode, true);
-        }
+        let mut keyboard = self
+            .scenes
+            .world
+            .specs_world
+            .write_resource::<keyboard::Keyboard>();
+
+        keyboard.0.insert(keycode, true);
     }
 
     fn key_up_event(&mut self, _ctx: &mut Context, keycode: Keycode, _keymod: Mod, _repeat: bool) {
-        if let Some(ev) = self.input_binding.resolve(keycode) {
-            self.scenes.input(ev, false);
-            let mut keyboard = self
-                .scenes
-                .world
-                .specs_world
-                .write_resource::<keyboard::Keyboard>();
-            keyboard.0.insert(keycode, false);
-        }
+        let mut keyboard = self
+            .scenes
+            .world
+            .specs_world
+            .write_resource::<keyboard::Keyboard>();
+        keyboard.0.insert(keycode, false);
+        // if let Some(ev) = self.input_binding.resolve(keycode) {
+        // self.scenes.input(ev, false);
+
+        // }
     }
 }
 

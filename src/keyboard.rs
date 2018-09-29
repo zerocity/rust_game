@@ -1,7 +1,9 @@
 use ggez::event::Keycode;
 use std::collections::HashMap;
 
+#[derive(Clone, Debug)]
 pub struct Keyboard(pub HashMap<Keycode, bool>);
+
 impl Keyboard {
     pub fn new() -> Self {
         Keyboard(HashMap::new())
@@ -12,5 +14,11 @@ impl Keyboard {
             Some(s) => *s,
             None => false,
         }
+    }
+}
+
+impl Default for Keyboard {
+    fn default() -> Self {
+        Keyboard(HashMap::new())
     }
 }

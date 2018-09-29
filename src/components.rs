@@ -1,6 +1,6 @@
-//use ggez::nalgebra as na;
 // use ggez::graphics::*;
-use ggez::graphics::{Drawable, Point2, Rect, Vector2};
+//use ggez::nalgebra as na;
+use ggez::graphics::{Point2, Rect, Vector2};
 use specs::*;
 
 #[derive(Clone, Debug)]
