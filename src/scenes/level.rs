@@ -1,101 +1,84 @@
 use ggez;
 // use ggez::graphics;
+use components as c;
 use ggez::graphics::{draw_ex, DrawParam, Point2, Vector2};
 use ggez_goodies::scene;
 use specs::{self, Join};
+use std::collections::HashMap;
 use warmy;
-
-use components as c;
 // use ggez_goodies::input::InputEffect;
+use assets::tilemap::TilemapManager;
 use scenes::*;
 use setup::{input, resources};
+use specs::Builder;
 use systems;
 use world::World;
 
-// use entities::level::Tile;
-
-use assets::sprite::TileManager;
-use assets::tileparser::{parse_tilemap, parse_tileset, Tilemap, Tileset};
-use entities::level::{LevelMap, Tile};
-use specs::Builder;
-
 pub struct LevelScene {
     done: bool,
-    image: warmy::Res<resources::Image>,
+    reg_images: HashMap<String, warmy::Res<resources::Image>>,
     dispatcher: specs::Dispatcher<'static, 'static>,
-}
-
-fn get_dungeon() -> Tileset {
-    let path = "resources/dungeon.json".to_string();
-    parse_tileset(path).unwrap_or_else(|_| {
-        panic!("Didn't find file");
-    })
-}
-
-fn get_lvl() -> Tilemap {
-    let path = "resources/lvl1.json";
-    parse_tilemap(path).unwrap_or_else(|_| {
-        panic!("Didn't find file");
-    })
 }
 
 impl LevelScene {
     pub fn new(ctx: &mut ggez::Context, world: &mut World) -> Self {
         let done = false;
-        let tilemap = get_lvl();
-        let tileset = get_dungeon();
+        let tile_manager = TilemapManager::new("resources/lvl1.json");
 
-        let tile_manager = TileManager::new(tileset);
-        let level = LevelMap::new(tilemap, tile_manager.clone());
-        let player = tile_manager.by_id(132).unwrap().to_owned();
-
-        // let first = tile_manager.by_id(115).unwrap().to_owned();
-
-        // let mut t = Tile::default();
-
-        // t.dest = Point2::new(100.0, 100.0);
-        // t.set_src(first.src);
-
-        // world
-        //     .specs_world
-        //     .create_entity()
-        //     .with(c::Render { src: t.src })
-        //     .with(c::Position(t.dest))
-        //     .build();
-
-        for tile in level.get_grid().iter() {
+        // Create World Entities
+        for tile in tile_manager.get_grid().iter() {
             if let Some(id) = tile.sprite_id {
                 if id > 0 {
-                    world
-                        .specs_world
-                        .create_entity()
-                        .with(c::Render { src: tile.src })
-                        .with(c::Position(tile.dest))
-                        .build();
+                    if let Some(id) = &tile.sprite_id {
+                        let image = tile_manager.get_image_by_id(id);
+                        if let Some(image) = image {
+                            world
+                                .specs_world
+                                .create_entity()
+                                .with(c::Render {
+                                    src: tile.src,
+                                    image,
+                                }).with(c::Position(tile.dest))
+                                .build();
+                        }
+                    }
                 }
             }
         }
 
-        world
-            .specs_world
-            .create_entity()
-            .with(c::Render { src: player.src })
-            .with(c::Position(Point2::new(0.0, 0.0)))
-            .with(c::Controllable)
-            .with(c::Motion {
-                velocity: Vector2::new(0.0, 0.0),
-                acceleration: Vector2::new(0.0, 0.0),
-            }).build();
+        // CREATE Player Entity
+        let player = tile_manager.by_id(&389).unwrap().to_owned();
+        let p_images = tile_manager.get_image_by_id(&389);
+        if let Some(p_images) = p_images {
+            world
+                .specs_world
+                .create_entity()
+                .with(c::Render {
+                    src: player.src,
+                    image: p_images,
+                }).with(c::Position(Point2::new(0.0, 0.0)))
+                .with(c::Controllable)
+                .with(c::Motion {
+                    velocity: Vector2::new(0.0, 0.0),
+                    acceleration: Vector2::new(0.0, 0.0),
+                }).build();
+        }
 
-        let image = world
-            .assets
-            .get::<_, resources::Image>(&warmy::FSKey::new(&tile_manager.image), ctx)
-            .unwrap();
+        let mut reg_images: HashMap<String, warmy::Res<resources::Image>> = HashMap::new();
+
+        for img in tile_manager.images.into_iter() {
+            let image = world
+                .assets
+                .get::<_, resources::Image>(&warmy::FSKey::new(&img.src), ctx)
+                .unwrap();
+            reg_images.entry(img.src).or_insert(image);
+        }
+
         let dispatcher = Self::register_systems();
 
         LevelScene {
             done,
-            image,
+            reg_images,
             dispatcher,
         }
     }
@@ -118,20 +101,27 @@ impl scene::Scene<World, input::InputEvent> for LevelScene {
     }
 
     fn draw(&mut self, gameworld: &mut World, ctx: &mut ggez::Context) -> ggez::GameResult<()> {
+        let scale = 3.5 as f32;
+        assert_ne!(scale, 0 as f32);
+
+        // Get Components for rendering
         let pos = gameworld.specs_world.read_storage::<c::Position>();
         let render = gameworld.specs_world.read_storage::<c::Render>();
 
         for (p, r) in (&pos, &render).join() {
-            draw_ex(
-                ctx,
-                &(self.image.borrow().0),
-                DrawParam {
-                    src: r.src,
-                    // scale: Point2::new(4.0, 4.0),
-                    dest: p.0,
-                    ..Default::default()
-                },
-            ).unwrap();
+            let img = self.reg_images.get(&r.image);
+            if let Some(img) = img {
+                draw_ex(
+                    ctx,
+                    &(img.borrow().0),
+                    DrawParam {
+                        src: r.src,
+                        scale: Point2::new(scale, scale),
+                        dest: p.0 * scale,
+                        ..Default::default()
+                    },
+                ).unwrap();
+            }
         }
         Ok(())
     }

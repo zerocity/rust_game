@@ -6,6 +6,7 @@ use specs::*;
 #[storage(VecStorage)]
 pub struct Render {
     pub src: Rect,
+    pub image: String,
 }
 
 #[derive(Component, Debug, Clone)]

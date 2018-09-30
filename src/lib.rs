@@ -23,7 +23,6 @@ extern crate warmy;
 pub mod app;
 pub mod assets;
 pub mod components;
-pub mod entities;
 pub mod keyboard;
 pub mod scenes;
 pub mod setup;

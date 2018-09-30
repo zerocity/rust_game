@@ -11,511 +11,743 @@
  "tiles":[
         {
          "id":0,
-         "type":"layout"
+         "properties":[
+                {
+                 "name":"walup",
+                 "type":"bool",
+                 "value":true
+                }],
+         "type":"tile"
         }, 
         {
          "id":1,
-         "type":"layout"
+         "properties":[
+                {
+                 "name":"walup",
+                 "type":"bool",
+                 "value":true
+                }],
+         "type":"tile"
         }, 
         {
          "id":2,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":3,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":4,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":5,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":6,
-         "type":"layout"
+         "type":"tile"
+        }, 
+        {
+         "id":7,
+         "type":"tile"
+        }, 
+        {
+         "id":8,
+         "type":"tile"
         }, 
         {
          "id":9,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":10,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":11,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":12,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":13,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":14,
-         "type":"weapon"
+         "type":"tile"
+        }, 
+        {
+         "id":15,
+         "type":"tile"
         }, 
         {
          "id":16,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":17,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":18,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":19,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":20,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":21,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":22,
-         "type":"layout"
+         "type":"tile"
+        }, 
+        {
+         "id":23,
+         "type":"tile"
+        }, 
+        {
+         "id":24,
+         "type":"tile"
         }, 
         {
          "id":25,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":26,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":27,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":28,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":29,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":30,
-         "type":"weapon"
+         "type":"tile"
+        }, 
+        {
+         "id":31,
+         "type":"tile"
         }, 
         {
          "id":32,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":33,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":34,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":35,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":36,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":37,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":38,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":39,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":40,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":41,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":42,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":43,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":44,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":45,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":46,
-         "type":"weapon"
+         "type":"tile"
+        }, 
+        {
+         "id":47,
+         "type":"tile"
+        }, 
+        {
+         "id":48,
+         "type":"tile"
+        }, 
+        {
+         "id":49,
+         "type":"tile"
         }, 
         {
          "id":50,
-         "type":"layout"
+         "type":"tile"
+        }, 
+        {
+         "id":51,
+         "type":"tile"
         }, 
         {
          "id":52,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":53,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":54,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":55,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":56,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":57,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":58,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":59,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":60,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":61,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":62,
-         "type":"weapon"
+         "type":"tile"
+        }, 
+        {
+         "id":63,
+         "type":"tile"
         }, 
         {
          "id":64,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":65,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":66,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":67,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":68,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":69,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":70,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":71,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":72,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":73,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":74,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":75,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":76,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":77,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":78,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":79,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":80,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":81,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":82,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":83,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":84,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":85,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":86,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":87,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":88,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":89,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":90,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":91,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":92,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":93,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":94,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":95,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":96,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":97,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":98,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":99,
-         "type":"layout"
+         "type":"tile"
+        }, 
+        {
+         "id":100,
+         "type":"tile"
+        }, 
+        {
+         "id":101,
+         "type":"tile"
+        }, 
+        {
+         "id":102,
+         "type":"tile"
         }, 
         {
          "id":103,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":104,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":105,
-         "type":"weapon"
+         "type":"tile"
         }, 
         {
          "id":106,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":107,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":108,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":109,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":110,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":111,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":112,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":113,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":114,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":115,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":116,
-         "type":"layout"
+         "type":"tile"
+        }, 
+        {
+         "id":117,
+         "type":"tile"
+        }, 
+        {
+         "id":118,
+         "type":"tile"
         }, 
         {
          "id":119,
-         "type":"weapon"
+         "type":"tile"
+        }, 
+        {
+         "id":120,
+         "type":"tile"
+        }, 
+        {
+         "id":121,
+         "type":"tile"
+        }, 
+        {
+         "id":122,
+         "type":"tile"
+        }, 
+        {
+         "id":123,
+         "type":"tile"
+        }, 
+        {
+         "id":124,
+         "type":"tile"
+        }, 
+        {
+         "id":125,
+         "type":"tile"
+        }, 
+        {
+         "id":126,
+         "type":"tile"
+        }, 
+        {
+         "id":127,
+         "type":"tile"
         }, 
         {
          "id":128,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":129,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":130,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":131,
-         "type":"layout"
+         "type":"tile"
         }, 
         {
          "id":132,
-         "type":"player"
+         "type":"tile"
+        }, 
+        {
+         "id":133,
+         "type":"tile"
+        }, 
+        {
+         "id":134,
+         "type":"tile"
+        }, 
+        {
+         "id":135,
+         "type":"tile"
+        }, 
+        {
+         "id":136,
+         "type":"tile"
+        }, 
+        {
+         "id":137,
+         "type":"tile"
+        }, 
+        {
+         "id":138,
+         "type":"tile"
+        }, 
+        {
+         "id":139,
+         "type":"tile"
+        }, 
+        {
+         "id":140,
+         "type":"tile"
+        }, 
+        {
+         "id":141,
+         "type":"tile"
+        }, 
+        {
+         "id":142,
+         "type":"tile"
+        }, 
+        {
+         "id":143,
+         "type":"tile"
         }, 
         {
          "id":144,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":145,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":146,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":147,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":148,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":149,
-         "type":"monster"
+         "type":"tile"
+        }, 
+        {
+         "id":150,
+         "type":"tile"
+        }, 
+        {
+         "id":151,
+         "type":"tile"
+        }, 
+        {
+         "id":152,
+         "type":"tile"
+        }, 
+        {
+         "id":153,
+         "type":"tile"
+        }, 
+        {
+         "id":154,
+         "type":"tile"
+        }, 
+        {
+         "id":155,
+         "type":"tile"
+        }, 
+        {
+         "id":156,
+         "type":"tile"
+        }, 
+        {
+         "id":157,
+         "type":"tile"
+        }, 
+        {
+         "id":158,
+         "type":"tile"
+        }, 
+        {
+         "id":159,
+         "type":"tile"
         }, 
         {
          "id":160,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":161,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":162,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":163,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":164,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":165,
-         "type":"monster"
+         "type":"tile"
+        }, 
+        {
+         "id":166,
+         "type":"tile"
+        }, 
+        {
+         "id":167,
+         "type":"tile"
+        }, 
+        {
+         "id":168,
+         "type":"tile"
+        }, 
+        {
+         "id":169,
+         "type":"tile"
+        }, 
+        {
+         "id":170,
+         "type":"tile"
+        }, 
+        {
+         "id":171,
+         "type":"tile"
+        }, 
+        {
+         "id":172,
+         "type":"tile"
+        }, 
+        {
+         "id":173,
+         "type":"tile"
+        }, 
+        {
+         "id":174,
+         "type":"tile"
+        }, 
+        {
+         "id":175,
+         "type":"tile"
         }, 
         {
          "id":176,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":177,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":178,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":179,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":180,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":181,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":182,
@@ -525,7 +757,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":183,
@@ -535,7 +767,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":184,
@@ -545,7 +777,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":185,
@@ -555,7 +787,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":186,
@@ -565,7 +797,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":187,
@@ -575,39 +807,47 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":188,
-         "type":"usabel"
+         "type":"tile"
+        }, 
+        {
+         "id":189,
+         "type":"tile"
         }, 
         {
          "id":190,
-         "type":"usabel"
+         "type":"tile"
+        }, 
+        {
+         "id":191,
+         "type":"tile"
         }, 
         {
          "id":192,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":193,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":194,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":195,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":196,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":197,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":198,
@@ -617,7 +857,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":199,
@@ -627,7 +867,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":200,
@@ -637,7 +877,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":201,
@@ -647,7 +887,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":202,
@@ -657,7 +897,7 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":203,
@@ -667,171 +907,215 @@
                  "type":"int",
                  "value":99
                 }],
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":204,
-         "type":"usabel"
+         "type":"tile"
+        }, 
+        {
+         "id":205,
+         "type":"tile"
         }, 
         {
          "id":206,
-         "type":"usabel"
+         "type":"tile"
+        }, 
+        {
+         "id":207,
+         "type":"tile"
         }, 
         {
          "id":208,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":209,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":210,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":211,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":212,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":213,
-         "type":"monster"
+         "type":"tile"
+        }, 
+        {
+         "id":214,
+         "type":"tile"
         }, 
         {
          "id":215,
-         "type":"usabel"
+         "type":"tile"
         }, 
         {
          "id":216,
-         "type":"usabel"
+         "type":"tile"
         }, 
         {
          "id":217,
-         "type":"usabel"
+         "type":"tile"
         }, 
         {
          "id":218,
-         "type":"usabel"
+         "type":"tile"
         }, 
         {
          "id":219,
-         "type":"usabel"
+         "type":"tile"
         }, 
         {
          "id":220,
-         "type":"usabel"
+         "type":"tile"
+        }, 
+        {
+         "id":221,
+         "type":"tile"
         }, 
         {
          "id":222,
-         "type":"usabel"
+         "type":"tile"
+        }, 
+        {
+         "id":223,
+         "type":"tile"
         }, 
         {
          "id":224,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":225,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":226,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":227,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":228,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":229,
-         "type":"monster"
+         "type":"tile"
         }, 
         {
          "id":230,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":231,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":232,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":233,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":234,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":235,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":236,
-         "type":"Npc"
+         "type":"tile"
         }, 
         {
          "id":237,
-         "type":"Npc"
+         "type":"tile"
         }, 
         {
          "id":238,
-         "type":"Npc"
+         "type":"tile"
         }, 
         {
          "id":239,
-         "type":"Npc"
+         "type":"tile"
+        }, 
+        {
+         "id":240,
+         "type":"tile"
+        }, 
+        {
+         "id":241,
+         "type":"tile"
+        }, 
+        {
+         "id":242,
+         "type":"tile"
+        }, 
+        {
+         "id":243,
+         "type":"tile"
+        }, 
+        {
+         "id":244,
+         "type":"tile"
+        }, 
+        {
+         "id":245,
+         "type":"tile"
         }, 
         {
          "id":246,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":247,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":248,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":249,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":250,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":251,
-         "type":"npc"
+         "type":"tile"
         }, 
         {
          "id":252,
-         "type":"Npc"
+         "type":"tile"
         }, 
         {
          "id":253,
-         "type":"Npc"
+         "type":"tile"
         }, 
         {
          "id":254,
-         "type":"Npc"
+         "type":"tile"
         }, 
         {
          "id":255,
-         "type":"Npc"
+         "type":"tile"
         }],
  "tilewidth":16,
  "type":"tileset",
