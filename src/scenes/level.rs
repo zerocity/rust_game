@@ -14,6 +14,8 @@ use specs::Builder;
 use systems;
 use world::World;
 
+use assets::entity_factory;
+
 pub struct LevelScene {
     done: bool,
     reg_images: HashMap<String, warmy::Res<resources::Image>>,
@@ -24,51 +26,12 @@ impl LevelScene {
     pub fn new(ctx: &mut ggez::Context, world: &mut World) -> Self {
         let done = false;
         let tile_manager = TilemapManager::new("resources/lvl1.json");
-        // let reg_properties: Vec<&str> = vec!["colide"];
 
-        // Create World Entities
-        // ugly ???
-        for tile in tile_manager.get_grid().iter() {
-            if let Some(id) = tile.sprite_id {
-                if id > 0 {
-                    if let Some(id) = &tile.sprite_id {
-                        let image = tile_manager.get_image_by_id(id);
-                        if let Some(image) = image {
-                            let e = world
-                                .specs_world
-                                .create_entity()
-                                .with(c::Render {
-                                    src: tile.src,
-                                    image,
-                                }).with(c::Position(tile.dest));
+        entity_factory::create_map(&tile_manager, world);
+        entity_factory::create_player(&tile_manager, world);
 
-                            e.build();
-                        }
-                    }
-                }
-            }
-        }
-
-        // CREATE Player Entity
-        let player = tile_manager.get_sprite_by_id(&389).unwrap().to_owned();
-        let p_images = tile_manager.get_image_by_id(&389);
-        if let Some(p_images) = p_images {
-            world
-                .specs_world
-                .create_entity()
-                .with(c::Render {
-                    src: player.src,
-                    image: p_images,
-                }).with(c::Position(Point2::new(100.0, 100.0)))
-                .with(c::Controllable)
-                .with(c::Motion {
-                    velocity: Vector2::new(0.0, 0.0),
-                    acceleration: Vector2::new(0.0, 0.0),
-                }).build();
-        }
-
+        // Register images
         let mut reg_images: HashMap<String, warmy::Res<resources::Image>> = HashMap::new();
-
         for img in tile_manager.images.into_iter() {
             let image = world
                 .assets
