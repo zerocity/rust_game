@@ -1,16 +1,16 @@
 use ggez;
 // use ggez::graphics;
 use components as c;
-use ggez::graphics::{draw_ex, DrawParam, Point2, Vector2};
+use ggez::graphics::{draw_ex, DrawParam, Point2};
 use ggez_goodies::scene;
 use specs::{self, Join};
 use std::collections::HashMap;
 use warmy;
 // use ggez_goodies::input::InputEffect;
+
 use assets::tilemap::TilemapManager;
 use scenes::*;
 use setup::{input, resources};
-use specs::Builder;
 use systems;
 use world::World;
 
@@ -25,7 +25,7 @@ pub struct LevelScene {
 impl LevelScene {
     pub fn new(ctx: &mut ggez::Context, world: &mut World) -> Self {
         let done = false;
-        let tile_manager = TilemapManager::new("resources/lvl1.json");
+        let tile_manager = TilemapManager::new("resources/lvl2.json");
 
         entity_factory::create_map(&tile_manager, world);
         entity_factory::create_player(&tile_manager, world);

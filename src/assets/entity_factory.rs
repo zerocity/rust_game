@@ -7,6 +7,7 @@ use world::World;
 pub fn create_map(tile_manager: &TilemapManager, world: &mut World) {
     for tile in tile_manager.get_grid().iter() {
         if let Some(id) = tile.sprite_id {
+            // ignore tiles with 0 --> no tile
             if id > 0 {
                 if let Some(id) = &tile.sprite_id {
                     let image = tile_manager.get_image_by_id(id);
@@ -28,8 +29,8 @@ pub fn create_map(tile_manager: &TilemapManager, world: &mut World) {
 }
 
 pub fn create_player(tile_manager: &TilemapManager, world: &mut World) {
-    let player = tile_manager.get_sprite_by_id(&389).unwrap().to_owned();
-    let p_images = tile_manager.get_image_by_id(&389);
+    let player = tile_manager.get_sprite_by_id(&973).unwrap().to_owned();
+    let p_images = tile_manager.get_image_by_id(&973);
 
     if let Some(p_images) = p_images {
         world
