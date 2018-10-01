@@ -1,5 +1,7 @@
 use assets::sprite::{create_sprite_with_index, ManagedSprite, Sprite};
-use assets::tileparser::{parse_tilemap, parse_tileset, SmallTileset, Tilemap, Tileset};
+use assets::tileparser::{
+    parse_tilemap, parse_tileset, Properties, SmallTileset, Tilemap, Tileset,
+};
 use ggez::graphics::{Point2, Rect};
 use std::collections::HashMap;
 // use std::fmt;
@@ -9,6 +11,7 @@ pub struct Tile {
     pub sprite_id: Option<i32>,
     pub dest: Point2,
     pub src: Rect,
+    pub properties: Properties,
 }
 
 impl Tile {
@@ -17,11 +20,15 @@ impl Tile {
             sprite_id,
             dest,
             src,
+            properties: None,
         }
     }
 
     pub fn set_src(&mut self, src: Rect) {
         self.src = src;
+    }
+    pub fn set_properties(&mut self, properties: &Properties) {
+        self.properties = properties.to_owned();
     }
 }
 
@@ -31,24 +38,10 @@ impl Default for Tile {
             sprite_id: None,
             dest: Point2::new(0., 0.),
             src: Rect::new(0., 0., 0., 0.),
+            properties: None,
         }
     }
 }
-// impl fmt::Display for Tile {
-//     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-//         write!(
-//             f,
-//             "Tile({:?}) \n  dest: ({}, {}) \n  src : (x {}, y {}, w {}, h {}) ",
-//             self.sprite_id,
-//             self.dest.x,
-//             self.dest.y,
-//             self.src.x,
-//             self.src.y,
-//             self.src.w,
-//             self.src.h
-//         )
-//     }
-// }
 
 fn load_tileset(small_tileset: &SmallTileset) -> Tileset {
     let path = format!("resources/{}", small_tileset.source);
@@ -138,29 +131,21 @@ impl TilemapManager {
 
                 t.dest.y = (row * tile_w) as f32;
                 t.dest.x = (col * tile_h) as f32;
-                let s = self.by_id(&tile);
+                let s = self.get_sprite_by_id(&tile);
 
                 if let Some(s) = s {
                     t.set_src(s.src);
+                    t.set_properties(&s.properties);
                 }
+
                 map.push(t);
             }
         }
 
         map
     }
-    // get_sprite_by_id
-    pub fn by_id(&self, id: &i32) -> Option<&Sprite> {
+    // get_sprite_by_ids
+    pub fn get_sprite_by_id(&self, id: &i32) -> Option<&Sprite> {
         self.sprites.get(id)
     }
-}
-
-#[test]
-fn create_tilemap_manager() {
-    let a = TilemapManager::new("resources/lvl1.json");
-    let b = a.get_grid();
-    // let id = a.by_id(&107);
-
-    println!("{:#?}", b);
-    assert_eq!(1, 1);
 }

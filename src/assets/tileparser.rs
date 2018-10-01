@@ -10,12 +10,14 @@ pub struct Image {
     pub height: i32,
 }
 
+pub type Properties = Option<Vec<HashMap<String, Value>>>;
+
 #[derive(Debug, Deserialize, Clone)]
 pub struct Tile {
     pub id: i32,
     #[serde(rename = "type")]
     pub tile_type: Option<String>,
-    pub properties: Option<Vec<HashMap<String, Value>>>,
+    pub properties: Properties,
 }
 
 #[derive(Debug, Deserialize, Clone)]
